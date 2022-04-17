@@ -1,5 +1,5 @@
 const pullWepons = "https://eldenring.fanapis.com/api/weapons?limit=100";
-const $app = document.querySelector(".box")
+const $box = document.querySelector(".box")
 fetch(pullWepons)
     .then((repsonse) => repsonse.json())
     .then((response) => {
@@ -21,6 +21,6 @@ fetch(pullWepons)
                 return $weponBox;
             })
             .forEach(($weponBox) => {
-                $app.append($weponBox);
+                $box.append($weponBox);
             });
     });
