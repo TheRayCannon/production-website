@@ -1,0 +1,18 @@
+.bossImg {
+    width: 450px;
+}
+
+.bossBox {
+    width: 700px;
+}
+
+.box {
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}

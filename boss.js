@@ -1,4 +1,4 @@
-const pullBosses = "https://eldenring.fanapis.com/api/bosses?limit=100&fields=images";
+const pullBosses = "https://eldenring.fanapis.com/api/bosses?limit=100";
 const $box = document.querySelector(".box");
 fetch(pullBosses)
     .then((repsonse) => repsonse.json())
@@ -7,16 +7,19 @@ fetch(pullBosses)
         return Promise.all(bosses);
     })
     .then((bosses) => {
-        bosses.map((boss) => {
+        bosses
+            .filter((boss) =>
+                boss.image !== null
+            )
+            .map((boss) => {
                 const $bossbox = document.createElement("div");
-
+                $bossbox.classList.add("bossBox")
                 $bossbox.innerHTML = `
     <h3>${boss.name}</h3>
-    <img src = "${boss.image}"/>
+    <img src = "${boss.image}" class="bossImg" />
     <p>Location : ${boss.location}</p>
-    <p>Drops:${boss.drops}</p>
+    <p>Drops:${boss.drops.join(', ')}</p>
     `;
-
                 return $bossbox
             })
             .forEach(($bossbox) => {
