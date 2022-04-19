@@ -7,18 +7,25 @@ fetch(pullSourcery)
         return Promise.all(spells)
     })
     .then((spells) => {
-        spells.map((spell) => {
+        spells
+            .filter((spell) =>
+                spell.requires !== null
+            )
+            .map((spell) => {
                 const $spellBox = document.createElement("div")
                 $spellBox.classList.add("spellBox")
+                const req = spell.requires
+                    .map(object => { return `  ${object.name }: ${object.amount}` })
+                console.log(req)
                 $spellBox.innerHTML = `
-            <h3>Spall Name: ${spell.name}<h3/>
-            <img src="${spell.image}" class="spellImg"/>
-            <p>${spell.description}</p>
-            <p>Type: ${spell.type}</p>
-            <p>Cost: ${spell.cost} FP</p>
-            <p>Effetcs:${spell.effects}</p>
-            <p>${spell.requires}</p>
-            `;
+                <h3>Spall Name: ${spell.name}<h3/>
+                <img src="${spell.image}" class="spellImg"/>
+                <p>${spell.description}</p>
+                <p>Type: ${spell.type}</p>
+                <p>Cost: ${spell.cost} FP</p>
+                <p>Effetcs:${spell.effects}</p>
+                <p>Requirements: ${req}<p>
+                `;
                 return $spellBox
             })
             .forEach(($spellBox) => {

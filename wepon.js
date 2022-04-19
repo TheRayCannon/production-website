@@ -8,8 +8,14 @@ fetch(pullWepons)
     })
     .then((wepons) => {
         wepons
+            .filter((wepon) =>
+                wepon.requiredAttributes !== null
+            )
             .map((wepon) => {
                 const $weponBox = document.createElement("div");
+                const req = wepon.requiredAttributes
+                    .map(
+                        object => { return ` ${object.name}: ${object.amount}` })
                 $weponBox.innerHTML = `
    <h3>${wepon.name}<h3>
    <img src="${wepon.image}" />
@@ -17,6 +23,7 @@ fetch(pullWepons)
    <p> Scales with:
     ${wepon.scalesWith.map(tool => tool.name)} 
    </p> 
+   <p> Requirments: ${req}</p>
    `;
                 return $weponBox;
             })
