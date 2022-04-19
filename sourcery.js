@@ -1,5 +1,7 @@
 const pullSourcery = "https://eldenring.fanapis.com/api/sorceries?limit=100"
 const $box = document.querySelector(".box");
+
+
 fetch(pullSourcery)
     .then((response) => response.json())
     .then((response) => {
@@ -16,7 +18,6 @@ fetch(pullSourcery)
                 $spellBox.classList.add("spellBox")
                 const req = spell.requires
                     .map(object => { return `  ${object.name }: ${object.amount}` })
-                console.log(req)
                 $spellBox.innerHTML = `
                 <h3>Spall Name: ${spell.name}<h3/>
                 <img src="${spell.image}" class="spellImg"/>
