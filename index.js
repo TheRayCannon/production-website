@@ -1,6 +1,6 @@
-const form = document.querySelector("form")
-const pullSourcery = "https://eldenring.fanapis.com/api/sorceries?limit=100"
-const $box = document.querySelector(".box");
+const form = document.querySelector("form");
+const pullSourcery = "https://eldenring.fanapis.com/api/sorceries?limit=10";
+const $box = document.createelement("div");
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -14,16 +14,12 @@ form.addEventListener("submit", (event) => {
     fetch(pullSourcery)
         .then((response) => response.json())
         .then((response) => {
-            const spells = response.data
-            return Promise.all(spells)
+            const spells = response.data;
+            return Promise.all(spells);
         })
         .then((spells) => {
             spells
-                .filter((spell) =>
-                    spell.requires !== null
-                )
-                .filter((spell) =>
-                    spell.requires !== undefined)
+                .filter((spell) => spell.requires !== null)
                 .filter((spell) => {
                     const intIndex = 0;
                     const faithIndex = 1;
@@ -35,10 +31,11 @@ form.addEventListener("submit", (event) => {
                     );
                 })
                 .map((spell) => {
-                    const $spellBox = document.createElement("div")
-                    $spellBox.classList.add("spellBox")
-                    const req = spell.requires
-                        .map(object => { return `  ${object.name }: ${object.amount}` })
+                    const $spellBox = document.createElement("div");
+                    $spellBox.classList.add("spellBox");
+                    const req = spell.requires.map((object) => {
+                        return `  ${object.name}: ${object.amount}`;
+                    });
                     $spellBox.innerHTML = `
                     <h3>Spall Name: ${spell.name}<h3/>
                     <img src="${spell.image}" class="spellImg"/>
@@ -48,11 +45,10 @@ form.addEventListener("submit", (event) => {
                     <p>Effetcs:${spell.effects}</p>
                     <p>Requirements: ${req}<p>
                     `;
-                    return $spellBox
+                    return $spellBox;
                 })
                 .forEach(($spellBox) => {
-                    $box.append($spellBox)
-                })
-        })
-
-})
+                    $box.append($spellBox);
+                });
+        });
+});
