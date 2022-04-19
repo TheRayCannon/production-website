@@ -1,0 +1,10 @@
+const form = document.querySelector("form")
+form.addEventListener("submit", (event) => {
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    const strength = formData.get("strength")
+    const dex = formData.get("dex")
+    const int = formData.get("int")
+    const faith = formData.get("faith")
+    const arcane = formData.get("arcane")
+})
