@@ -1,134 +1,29 @@
-const form = document.querySelector("form");
-const pullSourcery = "https://eldenring.fanapis.com/api/sorceries?limit=10";
-const pullInc = "https://eldenring.fanapis.com/api/incantations?limit=10";
-const pullWepons = "https://eldenring.fanapis.com/api/weapons?limit=5";
-const $box = document.querySelector("#box");
+const $helloBox = document.querySelector(".helloBox")
+const characterUrl = "https://eldenring.fanapis.com/api/npcs?name=White-faced Varré"
 
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const strength = formData.get("strength");
-    const dex = formData.get("dex");
-    const int = formData.get("int");
-    const faith = formData.get("faith");
-    const arcane = formData.get("arcane");
 
-    fetch(pullSourcery)
-        .then((response) => response.json())
-        .then((response) => {
-            const spells = response.data;
-            return Promise.all(spells);
-        })
-        .then((spells) => {
-            spells
-                .filter((spell) => spell.requires !== null)
-                .filter((spell) => {
-                    const intIndex = 0;
-                    const faithIndex = 1;
-                    const arcaneIndex = 2;
-                    return (
-                        spell.requires[intIndex].amount <= +int &&
-                        spell.requires[faithIndex].amount <= +faith &&
-                        spell.requires[arcaneIndex].amount <= +arcane
-                    );
-                })
-                .map((spell) => {
-                    const $spellBox = document.createElement("div");
-                    $spellBox.classList.add("spellBox");
-                    const req = spell.requires.map((object) => {
-                        return `  ${object.name}: ${object.amount}`;
-                    });
-                    $spellBox.innerHTML = `
-                    <h1>Spall Name: ${spell.name}<h1/>
-                    <img src="${spell.image}" class="spellImg"/>
-                    <p>${spell.description}</p>
-                    <p>Type: ${spell.type}</p>
-                    <p>Cost: ${spell.cost} FP</p>
-                    <p>Effetcs:${spell.effects}</p>
-                    <p>Requirements: ${req}<p>
-                    `;
-                    return $spellBox;
-                })
-                .forEach(($spellBox) => {
-                    $box.append($spellBox);
-                });
-        })
-    fetch(pullInc)
+$helloBox.addEventListener("click", () => {
+    fetch(characterUrl)
         .then(response => response.json())
         .then(response => {
-            const inc = response.data
-            return Promise.all(inc)
+            const characters = response.data
+            return Promise.all(characters)
         })
-        .then((incants) => {
-            incants
-                .filter((incant) => {
-                    const intIndex = 0;
-                    const faithIndex = 1;
-                    const arcaneIndex = 2;
-                    return (
-                        incant.requires[intIndex].amount <= +int &&
-                        incant.requires[faithIndex].amount <= +faith &&
-                        incant.requires[arcaneIndex].amount <= +arcane
-                    );
+        .then((characters) => {
+            characters
+                .map((character) => {
+                    const $box = document.createElement("div")
+                    $box.innerHTML = `
+                <p>Joined us have you? In the lands between, one must find themselves at the whims of the path of Grace. A disorienting experience for anyone who has awoken from an eternal rest. Even if you are maidenless, it does not mean you are without help. Here we can give you a small list of enemies you may find in the land between. You may also find a guided list of a few spells and wepons you might be able to equip, if you have the ability. </p>
+                <img src="${character.image}">
+                <p>"${character.quote}" ~${character.name} </p>
+                `;
+                    return $box
                 })
-                .map((incant) => {
-                    const $incantBox = document.createElement("div");
-                    $incantBox.classList.add("incantBox");
-                    const req = incant.requires.map((object) => {
-                        return `  ${object.name}: ${object.amount}`;
-                    });
-                    $incantBox.innerHTML = `
-                    <h1>Spall Name: ${incant.name}<h1/>
-                    <img src="${incant.image}" class="spellImg"/>
-                    <p>${incant.description}</p>
-                    <p>Type: ${incant.type}</p>
-                    <p>Cost: ${incant.cost} FP</p>
-                    <p>Effetcs:${incant.effects}</p>
-                    <p>Requirements: ${req}<p>
-                    `;
-                    return $incantBox;
+                .forEach(($box) => {
+                    $helloBox.append($box)
                 })
-                .forEach(($incantBox) => {
-                    $box.append($incantBox);
-                });
         })
 
-    fetch(pullWepons)
-        .then((repsonse) => repsonse.json())
-        .then((response) => {
-            const wepons = response.data;
-            return Promise.all(wepons);
-        })
-        .then((wepons) => {
-            wepons
-                .filter((wepon) => {
-                    const strIndex = 0;
-                    const dexIndex = 1;
-                    return (
-                        wepon.requiredAttributes[strIndex].amount <= +strength &&
-                        wepon.requiredAttributes[dexIndex].amount <= +dex
-                    );
-                })
-                .map((wepon) => {
-                    const $weponBox = document.createElement("div");
-                    $weponBox.classList.add("weponBox")
-                    const req = wepon.requiredAttributes
-                        .map(
-                            object => { return ` ${object.name}: ${object.amount}` })
-                    $weponBox.innerHTML = `
-       <h3>${wepon.name}<h3>
-       <img src="${wepon.image}" />
-       <p>${wepon.description} </p>
-       <p> Scales with:
-        ${wepon.scalesWith.map(tool => tool.name)} 
-       </p> 
-       <p> Requirments: ${req}</p>
-       `;
-                    return $weponBox;
-                })
-                .forEach(($weponBox) => {
-                    $box.append($weponBox);
-                });
-        });
-});
+})

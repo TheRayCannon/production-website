@@ -1,24 +1,77 @@
-.box {
-    display: block;
-    justify-content: center;
-    align-items: center;
-}
-
 body {
     background-image: url(lxq2cgncnmo81.webp);
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-color: black;
-    font: large;
+    font-weight: bold;
+    background-attachment: fixed;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    font-size: larger;
     font-weight: bold;
 }
 
-.wrapper {
+.navbar ul {
     display: flex;
-    justify-content: center;
-    width: fit-content;
+    justify-content: space-between;
+    width: 600px;
+    list-style: none;
 }
 
-.formBox form {
+ul li {
+    display: flex;
+    font-style: italic;
+}
+
+li a {
+    margin: 5px;
+    padding: 15px;
+    color: rgb(255, 255, 255);
+}
+
+ul a:link {
+    text-decoration: none;
+}
+
+.helloBox {
+    margin: 5px;
+    padding: 5px;
+    width: 500px;
+    margin-left: 500px;
+    background-color: beige;
+}
+
+.helloBox img {
+    margin-left: 75px;
+}
+
+.helloBox>p {
+    margin-left: 210px;
+}
+
+.wrapper {
+    display: block;
+    margin: 250px;
+}
+
+.wrapper a {
+    display: flex;
+    background-color: rgba(150, 5, 5, 0.699);
+    border: 5px;
+    border-radius: 20%;
+    width: 100px;
+    height: 25px;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    margin-left: 50px;
+}
+
+.equipForm {
+    margin-left: 400px;
     padding: 20px;
     width: 350px;
     display: grid;
@@ -26,37 +79,70 @@ body {
     grid-template-rows: repeat(5, 1fr);
     justify-items: center;
     align-items: center;
-}
-
-.formBox {
-    background-color: burlywood;
-    width: 600px;
-    justify-content: center;
+    background-color: goldenrod;
 }
 
 .submit {
-    grid-column: span 2;
     height: 45px;
 }
 
-.box {
-    width: 300px;
-}
-
 .spellBox {
-    border: 10px;
-    border-color: red;
-    border-style: groove;
-}
-
-.incantBox {
-    border: 10px;
-    border-color: gold;
-    border-style: groove;
-}
-
-.weponBox {
+    padding: 5px;
+    margin: 10px;
     border: 10px;
     border-color: aqua;
     border-style: groove;
+    background-color: beige;
+}
+
+.incantBox {
+    padding: 5px;
+    margin: 10px;
+    border: 10px;
+    border: 10px;
+    border-color: gold;
+    border-style: groove;
+    background-color: beige;
+}
+
+.weponBox {
+    padding: 5px;
+    margin: 10px;
+    border: 10px;
+    border: 10px;
+    border-color: red;
+    border-style: groove;
+    background-color: beige;
+}
+
+.box {
+    display: grid;
+    grid-template-columns: repeat(2, 300px);
+    grid-template-rows: repeat(50, auto);
+    margin-top: 50px;
+    margin-left: 350px;
+    gap: 20px;
+    background-color: rgba(184, 135, 11, 0.493);
+    width: 800px;
+    height: 800px;
+    justify-content: center;
+    overflow-y: hidden;
+    overflow-y: scroll;
+}
+
+.box img {
+    width: 250px;
+}
+
+#error>h1 {
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+
+#error>p {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: azure;
 }
