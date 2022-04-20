@@ -1,6 +1,7 @@
 const form = document.querySelector("form");
 const pullSourcery = "https://eldenring.fanapis.com/api/sorceries?limit=10";
-const $box = document.createelement("div");
+const $box = document.querySelector("#box");
+
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -10,7 +11,6 @@ form.addEventListener("submit", (event) => {
     const int = formData.get("int");
     const faith = formData.get("faith");
     const arcane = formData.get("arcane");
-
     fetch(pullSourcery)
         .then((response) => response.json())
         .then((response) => {
@@ -18,6 +18,7 @@ form.addEventListener("submit", (event) => {
             return Promise.all(spells);
         })
         .then((spells) => {
+
             spells
                 .filter((spell) => spell.requires !== null)
                 .filter((spell) => {
@@ -37,7 +38,7 @@ form.addEventListener("submit", (event) => {
                         return `  ${object.name}: ${object.amount}`;
                     });
                     $spellBox.innerHTML = `
-                    <h3>Spall Name: ${spell.name}<h3/>
+                    <h1>Spall Name: ${spell.name}<h1/>
                     <img src="${spell.image}" class="spellImg"/>
                     <p>${spell.description}</p>
                     <p>Type: ${spell.type}</p>
@@ -50,5 +51,6 @@ form.addEventListener("submit", (event) => {
                 .forEach(($spellBox) => {
                     $box.append($spellBox);
                 });
-        });
+        })
+
 });

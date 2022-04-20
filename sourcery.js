@@ -1,5 +1,5 @@
 const pullSourcery = "https://eldenring.fanapis.com/api/sorceries?limit=100"
-const $box = document.querySelector(".box");
+const $box = document.querySelector("#box");
 
 
 fetch(pullSourcery)
