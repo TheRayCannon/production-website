@@ -1,11 +1,3 @@
-.bossImg {
-    width: 450px;
-}
-
-.bossBox {
-    width: 700px;
-}
-
 .box {
     display: block;
     justify-content: center;
@@ -13,18 +5,33 @@
 }
 
 body {
-    display: flex;
-    justify-content: center;
+    background-image: url(lxq2cgncnmo81.webp);
+    background-size: contain;
+    background-color: black;
+    font: large;
+    font-weight: bold;
 }
 
-.formBox>form {
-    padding: 200px;
-    width: 200px;
+.wrapper {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+}
+
+.formBox form {
+    padding: 20px;
+    width: 350px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     justify-items: center;
     align-items: center;
+}
+
+.formBox {
+    background-color: burlywood;
+    width: 600px;
+    justify-content: center;
 }
 
 .submit {
@@ -33,5 +40,23 @@ body {
 }
 
 .box {
-    width: auto;
+    width: 300px;
+}
+
+.spellBox {
+    border: 10px;
+    border-color: red;
+    border-style: groove;
+}
+
+.incantBox {
+    border: 10px;
+    border-color: gold;
+    border-style: groove;
+}
+
+.weponBox {
+    border: 10px;
+    border-color: aqua;
+    border-style: groove;
 }
