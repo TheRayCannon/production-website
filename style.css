@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap');
 body {
     background-image: url(lxq2cgncnmo81.webp);
     background-size: cover;
@@ -5,6 +6,7 @@ body {
     background-color: black;
     font-weight: bold;
     background-attachment: fixed;
+    font-family: 'Cinzel', serif;
 }
 
 .navbar {
