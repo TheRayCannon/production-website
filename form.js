@@ -2,7 +2,7 @@ const form = document.querySelector(".equipForm");
 const pullSourcery = "https://eldenring.fanapis.com/api/sorceries?limit=10";
 const pullInc = "https://eldenring.fanapis.com/api/incantations?limit=10";
 const pullWepons = "https://eldenring.fanapis.com/api/weapons?limit=5";
-const $box = document.querySelector("#box");
+const $box = document.querySelector("#equipbox");
 
 
 function redirect() {
